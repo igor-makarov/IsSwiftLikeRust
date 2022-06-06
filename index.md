@@ -4,6 +4,10 @@ layout: default
 
 {% include_relative README.md %}
 
+[GitHub repo](https://github.com/igor-makarov/IsSwiftLikeRust) 
+•
+[CONTRIBUTING](docs/CONTRIBUTING.html)
+
 # Features
 
 {% assign features = site.pages | where: 'layout', 'feature' %}
