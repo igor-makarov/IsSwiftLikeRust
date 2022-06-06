@@ -1,4 +1,10 @@
-<p class="label">{{ include.content.status }}</p>
+{% if include.content.status == 'supported' %}
+{% assign label-class='label-green' %}
+{% elsif include.content.status == 'unsupported' %}
+{% assign label-class='label-red' %}
+{% endif %}
+
+<p class="label {{ label-class }}">{{ include.content.status }}</p>
 <br>
 {% if include.content.details != nil %}
 <a href="{{ include.content.details }}">
