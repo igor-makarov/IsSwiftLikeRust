@@ -13,12 +13,12 @@ feature-status:
 excerpt: >- 
   Compile-time evaluation (const-eval) allows the compiler to calculate the value of constants at 
   compile-time, thus providing the compiler with information that can be used for additional 
-  type safety and for optimization.
+  type safety and optimization.
 
 ---
 
 ### Swift
-In Swift, compile-time evaluation support is in its early stages. [SE-0359] aims to formalize the use of `@const` attribute on variable declarations to signify that it is constant at compile time. The compiler then verifies that the value is known. The `@const` attribute can be applied to:
+In Swift, compile-time evaluation support is in its early stages. [SE-0359] aims to formalize the use of `@const` attribute on declarations to signify that they can be determined at compile time. The compiler verifies that this is the case. The `@const` attribute can be applied to:
  * immutable variable declarations
  * function parameters
  * static protocol property requirements
