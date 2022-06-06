@@ -6,7 +6,7 @@ Swift and Rust are modern programming languages that are designed to be type-saf
 And yet the two are rarely compared or even mentioned in the same context.
 
 {% for page in site.pages %}
-  {% if page.kind == 'feature' %}
+  {% if page.layout == 'feature' %}
 ### {{ page.title }}
 {{ page.content }}
 {% include feature-status.html content=page %}

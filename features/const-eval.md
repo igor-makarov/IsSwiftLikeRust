@@ -2,7 +2,6 @@
 
 title: const evaluation
 layout: feature
-kind: feature
 feature-status:
   swift:
     status: pending
