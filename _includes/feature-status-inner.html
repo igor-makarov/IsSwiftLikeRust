@@ -10,7 +10,7 @@
     {% if include.content.details-caption != nil %}
         {% assign details-caption = include.content.details-caption %}
     {% else %}
-        {% assign details-caption = include.content.details | split: '/' | slice: 3,2 | join: '/' %}
+        {% assign details-caption = include.content.details | split: '/' | slice: 1,2  %}
     {% endif %}
     Details:
     <a href="{{ include.content.details }}">
