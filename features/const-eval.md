@@ -1,7 +1,7 @@
 ---
 
 title: const evaluation
-layout: page
+layout: feature
 kind: feature
 
 ---
