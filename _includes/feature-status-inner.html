@@ -7,8 +7,13 @@
 <p class="label {{ label-class }}">{{ include.content.status }}</p>
 <br>
 {% if include.content.details != nil %}
-Details:
-<a href="{{ include.content.details }}">
-  {{ include.content.details | split: '/' | last }}
-</a>
+    {% if include.content.details-caption != nil %}
+        {% assign details-caption = include.content.details-caption %}
+    {% else %}
+        {% assign details-caption = include.content.details | split: '/' | slice: 3,2 | join: '/' %}
+    {% endif %}
+    Details:
+    <a href="{{ include.content.details }}">
+        {{ details-caption }}
+    </a>
 {% endif %}
