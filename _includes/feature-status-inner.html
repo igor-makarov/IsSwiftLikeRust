@@ -1,0 +1,7 @@
+<p class="label">{{ include.content.status }}</p>
+<br>
+{% if include.content.details != nil %}
+<a href="{{ include.content.details }}">
+  {{ include.content.details | split: '/' | last }}
+</a>
+{% endif %}

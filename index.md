@@ -9,6 +9,8 @@ And yet the two are rarely compared or even mentioned in the same context.
   {% if page.kind == 'feature' %}
 ### {{ page.title }}
 {{ page.content }}
+{% include feature-status.html content=page %}
+
   {% endif %}
 {% endfor %}
 
