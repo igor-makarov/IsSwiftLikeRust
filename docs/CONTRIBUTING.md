@@ -25,9 +25,9 @@ excerpt: >-
 
 ---
 
-### Swift
+## Swift
 Swift full description, verbose.
-### Rust
+## Rust
 Rust full description, verbose.
 
 ```

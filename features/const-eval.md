@@ -17,7 +17,7 @@ excerpt: >-
 
 ---
 
-### Swift
+## Swift
 In Swift, compile-time evaluation support is in its early stages. [SE-0359] aims to formalize the use of `@const` attribute on declarations to signify that they can be determined at compile time. The compiler verifies that this is the case. The `@const` attribute can be applied to:
  * immutable variable declarations
  * function parameters
@@ -25,7 +25,7 @@ In Swift, compile-time evaluation support is in its early stages. [SE-0359] aims
 
 > Note: [SE-0359] does not provide any formalization on compile-time evaluation of user code. It is assumed that this will be addressed in a subsequent proposal.
 
-### Rust
+## Rust
 In Rust, constant (compile-time) evaluation utilizes the interpreter (`miri`) to run arbitrary user code (including [const functions][const fn]) and evaluate it at compile time. Const-eval is possible in the folowing contexts:
  * constants
  * statics
