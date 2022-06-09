@@ -52,12 +52,14 @@ print(firstGymnastCostume) // prints "B"
 
 ### Opaque types
 
-To avoid typing out long generic type signatures, Swift allows using the `some` keyword as syntactic sugar.  
+To avoid typing out long generic type signatures, Swift allows using the `some` keyword as a shorthand.
 
-This is called "opaque types" and is possible in several contexts:
+This concept is called an "opaque type": the type is still concrete in this case, and is inferred at compile-time from the context.
+
+Using opaque types is possible in several contexts:
  * function result types ([SE-0244] - Opaque Result Types, Swift 5.1)
- * type parameters of types  ([SE-0328] - Structural opaque result types, Swift 5.7)
  * function parameters ([SE-0341] - Opaque Parameter Declarations, Swift 5.7)
+ * type parameters within types ([SE-0328] - Structural opaque result types, Swift 5.7)
 
 The same function as above, with opaque types (Swift 5.7):
 
@@ -67,9 +69,12 @@ func firstWithBells(costumes: some Sequence<some Costume>) -> (some Costume)? {
 }
 ```
 
+> Note: constraining the associated type `Sequence.Element` with type parameter syntax `Sequence<Element>` is made possible by [SE-0346] (Lightweight same-type requirements for primary associated types, Swift 5.7)
+
 [SE-0244]: https://github.com/apple/swift-evolution/blob/main/proposals/0244-opaque-result-types.md
 [SE-0328]: https://github.com/apple/swift-evolution/blob/main/proposals/0328-structural-opaque-result-types.md
 [SE-0341]: https://github.com/apple/swift-evolution/blob/main/proposals/0341-opaque-parameters.md
+[SE-0346]: https://github.com/apple/swift-evolution/blob/main/proposals/0346-light-weight-same-type-syntax.md
 
 ## Rust
 
