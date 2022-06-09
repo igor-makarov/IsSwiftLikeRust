@@ -1,7 +1,11 @@
 {% if include.content.status == 'supported' %}
-{% assign label-class='label-green' %}
+  {% assign label-class='label-green' %}
 {% elsif include.content.status == 'unsupported' %}
-{% assign label-class='label-red' %}
+  {% assign label-class='label-red' %}
+{% elsif include.content.status == 'pending' %}
+  {% assign label-class='label-purple' %}
+{% else %}
+  {% assign label-class='' %}
 {% endif %}
 
 <p class="label {{ label-class }}">{{ include.content.status }}</p>
