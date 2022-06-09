@@ -55,9 +55,9 @@ print(firstGymnastCostume) // prints "B"
 To avoid typing out long generic type signatures, Swift allows using the `some` keyword as syntactic sugar.  
 
 This is called "opaque types" and is possible in several contexts:
- * function result type ([SE-0244], Swift 5.1)
- * type parameter of a type  ([SE-0328], Swift 5.7)
- * function parameter ([SE-0341], Swift 5.7)
+ * function result types ([SE-0244] - Opaque Result Types, Swift 5.1)
+ * type parameters of types  ([SE-0328] - Structural opaque result types, Swift 5.7)
+ * function parameters ([SE-0341] - Opaque Parameter Declarations, Swift 5.7)
 
 The same function as above, with opaque types (Swift 5.7):
 
