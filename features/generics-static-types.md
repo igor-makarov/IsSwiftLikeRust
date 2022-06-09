@@ -1,6 +1,7 @@
 ---
 title: Generics - static types
 layout: feature
+nav_order: 500
 feature-status:
   swift:
     status: supported

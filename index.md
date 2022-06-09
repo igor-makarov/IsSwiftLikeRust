@@ -10,7 +10,7 @@ layout: default
 
 # Features
 
-{% assign features = site.pages | where: 'layout', 'feature' %}
+{% assign features = site.pages | where: 'layout', 'feature' | sort: 'nav_order' %}
 {% for feature in features %}
   <h2><a href="{{ feature.url }}">{{ feature.title }}</a></h2>
   {{ feature.excerpt }}

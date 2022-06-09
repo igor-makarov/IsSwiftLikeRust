@@ -2,6 +2,7 @@
 
 title: Compile-time evaluation
 layout: feature
+nav_order: 900
 feature-status:
   swift:
     status: pending
