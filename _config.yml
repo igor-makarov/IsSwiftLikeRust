@@ -2,7 +2,7 @@
 title: Is Swift Like Rust?
 email: your-email@example.com
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://isswiftlikerust.dev"
 permalink: /:categories/:year/:month/:day/:title
 
 theme: just-the-docs
