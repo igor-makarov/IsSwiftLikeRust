@@ -6,7 +6,7 @@ layout: default
 
 [GitHub repo](https://github.com/igor-makarov/IsSwiftLikeRust) 
 •
-[CONTRIBUTING](docs/CONTRIBUTING.html)
+[CONTRIBUTING](docs/CONTRIBUTING)
 
 # Features
 
