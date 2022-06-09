@@ -40,13 +40,13 @@ struct GymnastCostume: Costume {
     let name: String
     let hasBells: Bool
 }
-// a concrete array of structs
-let gymnastCostumesArray: [GymnastCostume] = [
+// a concrete array of structs `Array<GymnastCostume>`
+let gymnastCostumesArray = [
     GymnastCostume(name: "A", hasBells: false),
     GymnastCostume(name: "B", hasBells: true)
 ]
-// a concrete result
-let firstGymnastCostume: GymnastCostume? = firstWithBells(costumes: gymnastCostumesArray)
+// a concrete result `Optional<GymnastCostume>`
+let firstGymnastCostume = firstWithBells(costumes: gymnastCostumesArray)
 print(firstGymnastCostume) // prints "B"
 ```
 
@@ -56,18 +56,16 @@ To avoid typing out long generic type signatures, Swift allows using the `some` 
 
 This is called "opaque types" and is possible in several contexts:
  * function result type ([SE-0244], Swift 5.1)
- * type parameter of a result type  ([SE-0328], Swift 5.7)
+ * type parameter of a type  ([SE-0328], Swift 5.7)
  * function parameter ([SE-0341], Swift 5.7)
 
-The same function as above, with an opaque parameter:
+The same function as above, with opaque types (Swift 5.7):
 
 ```swift
-func firstWithBells<C: Costume>(costumes: some Sequence<C>) -> C? {
+func firstWithBells(costumes: some Sequence<some Costume>) -> (some Costume)? {
     costumes.first(where: { $0.hasBells })
 }
 ```
-
-> Note: the type parameter `C` cannot be made opaque because it's shared between the input type (`some Sequence<C>`) and the output type (`Optional<C>`)
 
 [SE-0244]: https://github.com/apple/swift-evolution/blob/main/proposals/0244-opaque-result-types.md
 [SE-0328]: https://github.com/apple/swift-evolution/blob/main/proposals/0328-structural-opaque-result-types.md
@@ -111,11 +109,11 @@ fn main() {
         GymnastCostume { name: "B", has_bells: true },
     ];
     let first_gymnast_costume = first_with_bells(gymnast_costumes_vec);
-    println!("{:?}, {:?}", type_of!(first_gymnast_costume), first_gymnast_costume); // prints "B"
+    println!("{:?}", first_gymnast_costume); // prints "B"
 }
 ```
 
-[Full example](https://rust.godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:rust,selection:(endColumn:1,endLineNumber:2,positionColumn:1,positionLineNumber:2,selectionStartColumn:1,selectionStartLineNumber:2,startColumn:1,startLineNumber:2),source:'//+define+a+generic+type+%0Apub+trait+Costume+%7B%0A++++fn+has_bells(%26self)+-%3E+bool%3B%0A%7D%0A%0A//+define+a+generic+function%0Afn+first_with_bells%3CI,+C%3E(iter:+I)+-%3E+Option%3CC%3E%0Awhere+I:+IntoIterator%3CItem+%3D+C%3E,+C:+Costume+%2B+Clone+%7B%0A++++iter.into_iter().find(%7Cc%7C+c.has_bells()).clone()%0A%7D%0A%0A//+define+a+concrete+type%0A%23%5Bderive(Clone,+Debug)%5D%0Astruct+GymnastCostume+%7B%0A++++name:+%26!'static+str,%0A++++has_bells:+bool,%0A%7D%0A%0A//+create+a+trait+impl%0Aimpl+Costume+for+GymnastCostume+%7B%0A++++fn+has_bells(%26self)+-%3E+bool+%7B%0A++++++++self.has_bells%0A++++%7D%0A%7D%0A%0Afn+main()+%7B%0A++++let+gymnast_costumes_vec+%3D+vec!!%5B%0A++++++++GymnastCostume+%7B+name:+%22A%22,+has_bells:+false+%7D,%0A++++++++GymnastCostume+%7B+name:+%22B%22,+has_bells:+true+%7D,%0A++++%5D%3B%0A++++let+first_gymnast_costume+%3D+first_with_bells(gymnast_costumes_vec)%3B%0A++++println!!(%22%7B:%3F%7D%22,+first_gymnast_costume)%3B+//+prints+%22B%22%0A%7D'),l:'5',n:'0',o:'Rust+source+%231',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:executor,i:(argsPanelShown:'1',compilationPanelShown:'0',compiler:r1610,compilerOutShown:'0',execArgs:'',execStdin:'',fontScale:14,fontUsePx:'0',j:1,lang:rust,libs:!(),options:'',source:1,stdinPanelShown:'1',tree:'1',wrap:'1'),l:'5',n:'0',o:'Executor+rustc+1.61.0+(Rust,+Editor+%231)',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4) in Rust.
+[Rust example on godbolt.org]: https://rust.godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:rust,selection:(endColumn:1,endLineNumber:2,positionColumn:1,positionLineNumber:2,selectionStartColumn:1,selectionStartLineNumber:2,startColumn:1,startLineNumber:2),source:'//+define+a+generic+type+%0Apub+trait+Costume+%7B%0A++++fn+has_bells(%26self)+-%3E+bool%3B%0A%7D%0A%0A//+define+a+generic+function%0Afn+first_with_bells%3CI,+C%3E(iter:+I)+-%3E+Option%3CC%3E%0Awhere+I:+IntoIterator%3CItem+%3D+C%3E,+C:+Costume+%2B+Clone+%7B%0A++++iter.into_iter().find(%7Cc%7C+c.has_bells()).clone()%0A%7D%0A%0A//+define+a+concrete+type%0A%23%5Bderive(Clone,+Debug)%5D%0Astruct+GymnastCostume+%7B%0A++++name:+%26!'static+str,%0A++++has_bells:+bool,%0A%7D%0A%0A//+create+a+trait+impl%0Aimpl+Costume+for+GymnastCostume+%7B%0A++++fn+has_bells(%26self)+-%3E+bool+%7B%0A++++++++self.has_bells%0A++++%7D%0A%7D%0A%0Afn+main()+%7B%0A++++let+gymnast_costumes_vec+%3D+vec!!%5B%0A++++++++GymnastCostume+%7B+name:+%22A%22,+has_bells:+false+%7D,%0A++++++++GymnastCostume+%7B+name:+%22B%22,+has_bells:+true+%7D,%0A++++%5D%3B%0A++++let+first_gymnast_costume+%3D+first_with_bells(gymnast_costumes_vec)%3B%0A++++println!!(%22%7B:%3F%7D%22,+first_gymnast_costume)%3B+//+prints+%22B%22%0A%7D'),l:'5',n:'0',o:'Rust+source+%231',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:executor,i:(argsPanelShown:'1',compilationPanelShown:'0',compiler:r1610,compilerOutShown:'0',execArgs:'',execStdin:'',fontScale:14,fontUsePx:'0',j:1,lang:rust,libs:!(),options:'',source:1,stdinPanelShown:'1',tree:'1',wrap:'1'),l:'5',n:'0',o:'Executor+rustc+1.61.0+(Rust,+Editor+%231)',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4
 
 ### 'impl Trait'
 
