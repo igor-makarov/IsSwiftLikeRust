@@ -16,7 +16,7 @@ defaults:
       path: ""
     values:
       image: 
-        path: /favicon.svg
+        path: /og-image.png
 
 # Exclude from processing.
 # The following items will not be processed, by default.
