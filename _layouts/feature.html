@@ -6,6 +6,6 @@ layout: default
 
 {% include feature-status.html content=page %}
 
-{{ page.excerpt }}
+{{ page.excerpt | markdownify }}
 
 {{ content }}
