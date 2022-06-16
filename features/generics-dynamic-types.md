@@ -48,7 +48,7 @@ func hasBells(_ costume: some Costume) -> Bool {
     !costume.bells.isEmpty
 }
 // define a generic function that works with dynamic types inside an array
-func firstWithBells(costumes: [any Costume]) -> (any Costume)? {
+func firstWithBells(costumes: some Sequence<any Costume>) -> (any Costume)? {
     costumes.first(where: { hasBells($0) })
 }
 ```
