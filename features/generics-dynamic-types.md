@@ -5,16 +5,14 @@ nav_order: 501
 feature-status:
   swift:
     status: pending
-    # details: https://docs.swift.org/swift-book/LanguageGuide/Generics.html
   rust:
-    status: TODO
-    # details: https://doc.rust-lang.org/book/ch10-01-syntax.html
+    status: supported
 excerpt: >- 
-  As described in [Generics - static types](/features/generics-static-types),
-  generics allow defining shared behavior and generalizing algorithms.
-  This is also allowed in dynamic contexts, with type safety guarantees provide by the runtime.
+  Generics can refer to dynamic types with constraints, with type safety guarantees provided by the runtime.
 
 ---
+
+As described in ["Generics - static types"](/features/generics-static-types), we can define generic algorithms that can operate on concrete types. This page explores the considerations of using generalized types without knowing the underlying concrete types.
 
 The main concern of using generic types dynamically is to ensure the same degree of type safety at runtime as there is during compilation.
 

@@ -10,13 +10,14 @@ feature-status:
     status: supported
     details: https://doc.rust-lang.org/book/ch10-01-syntax.html
 excerpt: >- 
-  Generics allow defining shared behavior and generalizing algorithms.
-  This is achieved by defining types (classes, values, functions) with type parameters.
+  Generics are types (classes, values, functions) that have type parameters.
 
 ---
 
 In the context of this article, we will examine generics as they apply to statically-typed code.  
 In other words, while the algorithms are generic (e.g. comparing values), the actual code that uses them has concrete types (e.g. comparing integers).
+
+To see the dynamically typed equivalent, see ["Generics - dynamic types"](/features/generics-dynamic-types).
 
 ## Swift
 

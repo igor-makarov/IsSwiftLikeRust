@@ -12,11 +12,11 @@ feature-status:
     status: supported
     details: https://doc.rust-lang.org/reference/const_eval.html
 excerpt: >- 
-  Constant evaluation allows the compiler to calculate the value of constants
-  during compilation, thus providing the compiler with information that can be used for additional 
-  type safety and optimization.
+  Constant evaluation allows the compiler to calculate the value of constants during compilation.
 
 ---
+
+This provides the compiler with information that can be used for additional type safety and optimization.
 
 ## Swift
 In Swift, constant evaluation support is in its early stages. [SE-0359] aims to formalize the use of `@const` attribute on declarations to signify that they can be determined during compilation. The compiler verifies that this is the case. The `@const` attribute can be applied to:
