@@ -16,7 +16,7 @@ excerpt: >-
 
 ---
 
-The main concern of using generic types dynamically is to ensure the same degree of type safety at runtime as there is at compile time.
+The main concern of using generic types dynamically is to ensure the same degree of type safety at runtime as there is during compilation.
 
 This is usually achieved by a pattern called "boxing/unboxing". In this pattern, a type is "boxed" to allow referring to its generic type, and "unboxed" to safely refer to its concrete type.
 

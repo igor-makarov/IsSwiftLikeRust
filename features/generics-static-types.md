@@ -33,7 +33,7 @@ func firstWithBells<C, S>(costumes: S) -> C? where C: Costume, S: Sequence, S.El
 }
 ```
 
-The use of such an algorithm is bound at compile time to a concrete type at the point of use:
+The use of such an algorithm is bound during compilation to a concrete type at the point of use:
 
 ```swift 
 // define a concrete type conforming to `Costume`
@@ -55,7 +55,7 @@ print(firstGymnastCostume) // prints "B"
 
 To avoid typing out long generic type signatures, Swift allows using the `some` keyword as a shorthand.
 
-This concept is called an "opaque type": the type is still concrete in this case, and is inferred at compile-time from the context.
+This concept is called an "opaque type": the type is still concrete in this case, and is inferred during compilation from the context.
 
 Using opaque types is possible in several contexts:
  * function result types ([SE-0244] - Opaque Result Types, Swift 5.1)
