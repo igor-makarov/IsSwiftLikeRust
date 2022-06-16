@@ -88,4 +88,69 @@ print(firstCostume) // prints "B"
 
 ## Rust
 
-TODO
+Rust also allows using generalized types by their interfaces. The term for this is "trait object" and it's denoted using the `dyn` keyword.
+
+Trait objects **must** be references, an as such are usually declared as:
+* `&dyn Trait`
+* `Box<dyn Trait>`
+
+To implement a generalized function that finds the first costume with bells:
+
+```rust
+// define a generic type
+pub trait Costume {
+    fn description(&self) -> String;
+    fn has_bells(&self) -> bool;
+}
+// define a generic dynamic function
+fn first_with_bells<'a, 'b, I>(iter: &'a mut I) -> Option<Box<dyn Costume + 'b>>
+where I: Iterator<Item = Box<dyn Costume + 'b>> {
+    iter.find(|c| c.has_bells())
+}
+```
+
+Use it with two distinct types: 
+
+
+```rust
+// first concrete type
+struct GymnastCostume {
+    name: &'static str,
+    has_bells: bool,
+}
+impl Costume for GymnastCostume {
+    fn description(&self) -> String {
+        let name = self.name;
+        format!("Gymnast {name}").to_string()
+    }
+    fn has_bells(&self) -> bool {
+        self.has_bells
+    }
+}
+// second concrete type
+struct ClownCostume {
+    name: &'static str,
+}
+impl Costume for ClownCostume {
+    fn description(&self) -> String {
+        let name = self.name;
+        format!("Clown {name}").to_string()
+    }
+    fn has_bells(&self) -> bool {
+        true
+    }
+}
+// use it
+fn main() {
+    // heterogenous vector
+    let costumes_vec: Vec<Box<dyn Costume>> = vec![
+        Box::new(GymnastCostume { name: "A", has_bells: false }),
+        Box::new(ClownCostume { name: "B" }),
+    ];
+    let mut iter = costumes_vec.into_iter();
+    let first_costume = first_with_bells(&mut iter);
+    println!("{:?}", first_costume.unwrap().description()); // prints "Clown B"
+}
+```
+
+[Rust example on godbolt.org]: https://rust.godbolt.org/#z:OYLghAFBqd5QCxAYwPYBMCmBRdBLAF1QCcAaPECAMzwBtMA7AQwFtMQByARg9KtQYEAysib0QXACx8BBAKoBnTAAUAHpwAMvAFYTStJg1DEArgoKkl9ZATwDKjdAGFUtEywYgATKUcAZPAZMADl3ACNMYhAAVg1SAAdUBUI7Bhc3D28EpJSBAKDQlgio2MtMa1sBIQImYgJ0908fK0wbVOragnyQ8MiYuPNOhszmmrruwuL%2BgEpLVBNiZHYOAHoVgGosGiD1pnXgRki8ZHWCAE94zABSDQBBeJMw0%2BImQnWXc3dMdauAdgAhG63dYg9ZUBibTAKZDEPDxSoMCBXLwANisVGm6wAtFcAMzYdbVWFGPGAu6gsEQhBMBQAfQitFoCiRqPRmJx%2BPWYVQrlJQL%2BABEgWtIdtvnsDkFYSd0GdmCxjmCTAw2gIgeCwXhiOZaQB3QgIenlJl4pxgDhMUjrc1hK0ASTx2AghD6P1R5r2LBMBHWdvZjvWAHl4alTf9UKpTbKIR8CF83f9rRwwo7U3ddQhIt87SBfQRIkwiMRTXb8ywfriBetw5HcU5o%2B8knG2Amkyn8QG/mTgaCXcQAHTbdBI35OZB/JzrZD96l0hlMiDTab835Cu78u4imjan1oFXETD504Xa53cymGzrADiZw8NPqTfjXaBFPl7DdKPNg1sJ3PpBfoKzkajIKLm3KuP%2B66rkCeAsPEtCNp8Lb8MQ163sw5ixk%2BAIASCGpYNCsIhgILJouUGLYgGRKBMAPw4eSFKgvQPpvhWVbov2b58gxjFgiQLCFmAkDIl4N53uYdH/Fx0FeF40z9kQtLnjRi64XRa49nhVI0sBC7ImRtAURyBLgQhz48YxHFAfOChqYKK4aSKSh7ugU4CDCh7fOclxAueJiXk4tCoLqaSPi25maesb65vpX41D%2B6x/g5MFwQhWHISQ7xBSF6XfBFFL4VCMJwgipFspRnLUUYklqRSzFRaweWVol5GcY13GRQV/GCcJsmBcFEJdtJQqyfJinKUYqkWfZFkatZxrMvp5XGVyPJmfRnWggQpinpFM23PtIpmN8hDqhCAmBIuNUWSKmb5sQqCSvMCjrAAbq0RZqfVaBIVCtLvcguYAGqtGGEZRnKiHNtcHacniVYA0JVzRN2vEgjWIAgEEuoQGJGEPr9kkNWwMWyQdslWvNIG5lQYhKOpsy1aCGNY5gOP9TlYV5QCxPviJgKyQzkF7dEQq4qjTGHusXo%2Bn2bFub9dIA/2gSKX2qni19UvbjqP3Q/LOsEHqBq6YtqIy%2BsfbLprFnxMSBC0AwQksl4XYgHiABi9kU5qO60nrXz9squovPEi79gRxXEYiS6kusIp26rL0iRzEIC67UEChwsy0Jw0S8J4HBaKQqCcAASmYPoKPMix5V4uI8KQBCaNnswANb9PonCSAXLcl5wvCgXEzdF9npBwLASCYKorTeiQ5CULUwAKMohjlEICADZwjdoHBdCFqkq9BLQG9b6PpC7/EdB9MQXAolwcSX9fxCBt6p8hX30%2BtLcxDLwPvgz2QNUfAhdeD8EECIMQ7ApAyEEIoFQ6hz66C4PoQwxhK76DwGEUCkBZioGjqBDgg8a5LD0OYEBR916bw/twXg21MDLEbiHJg8Rt5j1zhwfOpBC7F1LhwbAgC56oVMOYE4XB%2Bz337BodYEAK7mCtLgQgmVkQN2mHQluS5SAd1KBwnu3C%2B58MHiAYeGic6cC8L3c%2Bhim6mNIO9bUqQQCSCAA%3D%3D
