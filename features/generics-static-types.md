@@ -71,12 +71,13 @@ func firstWithBells(costumes: some Sequence<some Costume>) -> (some Costume)? {
 }
 ```
 
-> Note: constraining the associated type `Sequence.Element` with type parameter syntax `Sequence<Element>` is made possible by [SE-0346] (Lightweight same-type requirements for primary associated types, Swift 5.7)
+> Note: constraining the associated type `Sequence.Element` with type parameter syntax `Sequence<Element>` is made possible by [SE-0346] (Lightweight same-type requirements for primary associated types, Swift 5.7) and [SE-0358] (Primary Associated Types in the Standard Library, _in review_).
 
 [SE-0244]: https://github.com/apple/swift-evolution/blob/main/proposals/0244-opaque-result-types.md
 [SE-0328]: https://github.com/apple/swift-evolution/blob/main/proposals/0328-structural-opaque-result-types.md
 [SE-0341]: https://github.com/apple/swift-evolution/blob/main/proposals/0341-opaque-parameters.md
 [SE-0346]: https://github.com/apple/swift-evolution/blob/main/proposals/0346-light-weight-same-type-syntax.md
+[SE-0358]: https://github.com/apple/swift-evolution/blob/main/proposals/0358-primary-associated-types-in-stdlib.md
 
 ## Rust
 

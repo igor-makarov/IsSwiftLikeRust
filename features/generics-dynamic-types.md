@@ -51,7 +51,7 @@ func firstWithBells(costumes: some Sequence<any Costume>) -> (any Costume)? {
 }
 ```
 
-> Note: constraining the associated type `Sequence.Element` with type parameter syntax `Sequence<Element>` is made possible by [SE-0346] (Lightweight same-type requirements for primary associated types, Swift 5.7)
+> Note: constraining the associated type `Sequence.Element` with type parameter syntax `Sequence<Element>` is made possible by [SE-0346] (Lightweight same-type requirements for primary associated types, Swift 5.7) and [SE-0358] (Primary Associated Types in the Standard Library, _in review_).
 
 This generic function can accept any `Sequence` that can contain different types of `Costume`s:
 
@@ -83,6 +83,7 @@ print(firstCostume) // prints "B"
 [SE-0352]: https://github.com/apple/swift-evolution/blob/main/proposals/0352-implicit-open-existentials.md
 [SE-0353]: https://github.com/apple/swift-evolution/blob/main/proposals/0353-constrained-existential-types.md
 [SE-0346]: https://github.com/apple/swift-evolution/blob/main/proposals/0346-light-weight-same-type-syntax.md
+[SE-0358]: https://github.com/apple/swift-evolution/blob/main/proposals/0358-primary-associated-types-in-stdlib.md
 
 ## Rust
 
